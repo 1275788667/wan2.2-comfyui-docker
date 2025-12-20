@@ -45,5 +45,10 @@ download_if_missing \
   https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors \
   $MODELS_DIR/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors
 
+download_if_missing \
+  https://raw.githubusercontent.com/1275788667/wan2.2-comfyui-docker/refs/heads/main/video_wan2_2_14B_i2v_subgraphed.json \
+  /opt/ComfyUI/user/default/workflows/video_wan2_2_14B_i2v_subgraphed.json
+  
 echo "🚀 Starting ComfyUI API..."
+echo "🚀 Starting ComfyUI API..." > /access.log
 exec "$@"
