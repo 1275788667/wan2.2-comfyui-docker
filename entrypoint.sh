@@ -6,7 +6,7 @@ MODELS_DIR=/opt/ComfyUI/models
 mkdir -p \
   $MODELS_DIR/text_encoders \
   $MODELS_DIR/vae \
-  $MODELS_DIR/unet \
+  $MODELS_DIR/diffusion_models \
   $MODELS_DIR/loras
 
 download_if_missing () {
@@ -51,4 +51,5 @@ download_if_missing \
   
 echo "🚀 Starting ComfyUI API..."
 echo "🚀 Starting ComfyUI API..." > /access.log
-exec "$@"
+cd /opt/ComfyUI
+exec ./comfyui-api --host 0.0.0.0 --port 8188
