@@ -5,11 +5,11 @@ echo "🔧 Initializing ComfyUI container..."
 
 # ===== 路径定义 =====
 COMFY_ROOT=/comfy/ComfyUI
-MODELS_DIR=/comfy/mnt/ComfyUI/models
+MODELS_DIR=/comfy/ComfyUI/models
 
 # ===== 创建目录 =====
 mkdir -p \
-  /comfy/mnt/ComfyUI/user/default/workflows \
+  $COMFY_ROOT/user/default/workflows \
   $MODELS_DIR/text_encoders \
   $MODELS_DIR/vae \
   $MODELS_DIR/diffusion_models \
