@@ -25,14 +25,15 @@ WORKDIR /comfy
 
 # ===== 虚拟环境 =====
 RUN python3 -m venv comfy-env
-RUN comfy-env/bin/pip install --upgrade pip setuptools wheel
+# 确保使用虚拟环境安装 pip/setuptools/wheel
+RUN ./comfy-env/bin/python -m pip install --upgrade pip setuptools wheel
 
 # ===== 从 Git 安装 ComfyUI =====
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git comfyui
 WORKDIR /comfy/comfyui
 
-# 安装 Python 依赖
-RUN comfy-env/bin/pip install --no-cache-dir -r requirements.txt
+# 安装 Python 依赖（使用虚拟环境的 python）
+RUN ../comfy-env/bin/python -m pip install --no-cache-dir -r requirements.txt
 
 # ===== 复制 entrypoint 并激活虚拟环境 =====
 WORKDIR /comfy
