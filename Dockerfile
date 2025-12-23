@@ -28,12 +28,11 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git
 WORKDIR /comfy/ComfyUI
 
 # ===== Python venv =====
-RUN python3 -m venv venv
+RUN python3 -m venv venv && \
+    venv/bin/pip install --upgrade pip setuptools wheel && \
+    venv/bin/pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130 && \
+    venv/bin/pip install -r requirements.txt
 
-RUN . venv/bin/activate && \
-    pip install --upgrade pip && \
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130 && \
-    pip install -r requirements.txt
 
 # ===== 复制 entrypoint =====
 COPY entrypoint.sh /entrypoint.sh
