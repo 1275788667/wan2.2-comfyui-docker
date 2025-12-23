@@ -16,12 +16,14 @@ RUN apt-get update && apt-get install -y \
 # ===== 工作目录 =====
 WORKDIR /comfy
 
-# ===== 创建虚拟环境并激活 =====
-RUN python3 -m venv comfy-env && \
-    /bin/bash -c "source comfy-env/bin/activate && \
-    pip install --upgrade pip setuptools wheel && \
-    pip install comfy-cli && \
-    pip install torch==2.3.0+cu131 torchvision==0.18.1+cu131 torchaudio==2.3.0+cu131 --index-url https://download.pytorch.org/whl/cu131"
+# 创建虚拟环境
+RUN python3 -m venv comfy-env
+
+# 使用虚拟环境的 pip 安装
+RUN comfy-env/bin/pip install --upgrade pip setuptools wheel
+RUN comfy-env/bin/pip install comfy-cli
+RUN comfy-env/bin/pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu131
+
 
 # ===== 使用 Comfy CLI 安装 ComfyUI =====
 RUN /bin/bash -c "source comfy-env/bin/activate && \
