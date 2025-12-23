@@ -1,4 +1,5 @@
-FROM nvidia/cuda:13.1.0-devel-ubuntu24.04
+# 使用官方 CUDA 13.0 + cuDNN 9 开发镜像
+FROM pytorch/pytorch:13.0.0-cudnn9-devel-ubuntu24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
@@ -14,20 +15,6 @@ RUN apt-get update && apt-get install -y \
     libglvnd0 libglvnd-dev libegl1-mesa-dev libvulkan1 libvulkan-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# ===== 安装 cuDNN =====
-ENV NV_CUDNN_VERSION=9.17.1.4-1
-ENV NV_CUDNN_PACKAGE_NAME=libcudnn9-cuda-13
-ENV NV_CUDNN_PACKAGE=libcudnn9-cuda-13=${NV_CUDNN_VERSION}
-ENV NV_CUDNN_PACKAGE_DEV=libcudnn9-dev-cuda-13=${NV_CUDNN_VERSION}
-ENV NV_CUDNN_PACKAGE_DEV_HEADERS=libcudnn9-headers-cuda-13=${NV_CUDNN_VERSION}
-
-RUN apt-get update && apt-get install -y \
-    ${NV_CUDNN_PACKAGE} \
-    ${NV_CUDNN_PACKAGE_DEV} \
-    ${NV_CUDNN_PACKAGE_DEV_HEADERS} \
-    && apt-mark hold ${NV_CUDNN_PACKAGE_NAME} \
-    && rm -rf /var/lib/apt/lists/*
-
 # ===== Vulkan/GL 配置 =====
 RUN mkdir -p /usr/share/glvnd/egl_vendor.d && \
     echo '{"file_format_version":"1.0.0","ICD":{"library_path":"libEGL_nvidia.so.0"}}' > /usr/share/glvnd/egl_vendor.d/10_nvidia.json && \
@@ -41,7 +28,8 @@ WORKDIR /comfy
 RUN python3 -m venv comfy-env
 RUN comfy-env/bin/pip install --upgrade pip setuptools wheel
 RUN comfy-env/bin/pip install comfy-cli
-RUN comfy-env/bin/pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu130
+# PyTorch 2.0 对应 CUDA 13.0 的包
+RUN comfy-env/bin/pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --extra-index-url https://download.pytorch.org/whl/cu130
 
 # ===== 安装 ComfyUI =====
 RUN /bin/bash -c "source comfy-env/bin/activate && comfy --workspace=/comfy/comfyui install"
