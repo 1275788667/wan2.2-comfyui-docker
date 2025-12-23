@@ -49,6 +49,9 @@ download_if_missing \
   https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors \
   $MODELS_DIR/vae/wan_2.1_vae.safetensors
 
+download_if_missing \
+  https://raw.githubusercontent.com/xiweichuang/wan2.2-comfyui-docker/refs/heads/main/Wan2.2-Remix-I2V-Comfy-Qwen3.json \
+  $COMFY_ROOT/user/default/workflows/Wan2.2-Remix-I2V-Comfy-Qwen3.json
 
 
 # ===== 日志 =====
