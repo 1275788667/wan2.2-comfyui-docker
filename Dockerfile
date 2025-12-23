@@ -1,5 +1,5 @@
-# 使用官方 CUDA 13.0 + cuDNN 9 开发镜像
-FROM pytorch/pytorch:13.0.0-cudnn9-devel-ubuntu24.04
+# ===== 基础镜像 =====
+FROM pytorch/pytorch:2.9.1-cuda13.0-cudnn9-devel
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
@@ -8,7 +8,6 @@ ENV NVIDIA_DRIVER_CAPABILITIES=all
 
 # ===== 安装系统依赖 =====
 RUN apt-get update && apt-get install -y \
-    python3 python3-venv python3-pip \
     git wget curl ffmpeg \
     libgl1 libglib2.0-0 ca-certificates \
     build-essential cmake \
@@ -28,8 +27,6 @@ WORKDIR /comfy
 RUN python3 -m venv comfy-env
 RUN comfy-env/bin/pip install --upgrade pip setuptools wheel
 RUN comfy-env/bin/pip install comfy-cli
-# PyTorch 2.0 对应 CUDA 13.0 的包
-RUN comfy-env/bin/pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --extra-index-url https://download.pytorch.org/whl/cu130
 
 # ===== 安装 ComfyUI =====
 RUN /bin/bash -c "source comfy-env/bin/activate && comfy --workspace=/comfy/comfyui install"
