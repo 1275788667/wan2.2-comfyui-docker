@@ -69,7 +69,7 @@ pip install --no-cache-dir --force-reinstall \
 torch torchvision torchaudio \
 pillow huggingface_hub accelerate optimum av \
 "transformers>=4.57.1" qwen-vl-utils \
-opencv-python-headless>=4.7.0.72 \
+opencv-python-headless==4.12.0.88 \
 scikit-learn scikit-image imageio_ffmpeg pykalman \
 insightface ultralytics \
 onnxruntime-gpu==1.18.0 onnxruntime==1.18.0 \
