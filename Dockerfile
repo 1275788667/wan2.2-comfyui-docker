@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     libgl1 libglib2.0-0 ca-certificates \
     build-essential cmake \
     libglvnd0 libglvnd-dev libegl1-mesa-dev \
-    libvulkan1 libvulkan-dev \
+    libvulkan1 libvulkan-dev vim \
     && rm -rf /var/lib/apt/lists/*
 
 # ===== Vulkan / EGL =====
