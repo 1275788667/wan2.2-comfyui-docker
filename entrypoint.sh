@@ -61,7 +61,7 @@ source $COMFY_VENV/bin/activate
 export COMFYUI_PATH=/comfy/ComfyUI
 
 # ===== 核心依赖（锁死 numpy < 2）=====
-pip install --no-cache-dir --force-reinstall \
+pip install --no-cache-dir \
 "numpy==1.26.4" \
 torch torchvision torchaudio \
 pillow huggingface_hub accelerate optimum av \
@@ -70,7 +70,7 @@ opencv-python-headless==4.11.0.86 \
 scikit-learn scikit-image imageio_ffmpeg pykalman \
 insightface ultralytics \
 onnxruntime-gpu==1.18.0 onnxruntime==1.18.0 \
-bitsandbytes triton
+bitsandbytes triton typer GitPython toml chardet
 
 
 
