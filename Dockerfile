@@ -41,8 +41,8 @@ RUN git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager
 
 # ===== 使用 cm-cli 安装缺失节点（关键）=====
 COPY Wan2.2-Remix-I2V-Comfy-Qwen3.json /tmp/workflow.json
-WORKDIR /comfy/ComfyUI
-RUN ../comfy-env/bin/python cm-cli.py install-missing --workflow /tmp/workflow.json
+WORKDIR /comfy/ComfyUI/custom_nodes/comfyui-manager
+RUN ../../../../comfy-env/bin/python cm-cli.py install-missing --workflow /tmp/workflow.json
 
 
 
