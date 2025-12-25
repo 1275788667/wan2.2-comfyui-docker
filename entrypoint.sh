@@ -75,16 +75,18 @@ bitsandbytes triton typer GitPython toml chardet
 
 
 # 安装 workflow 需要的所有节点
+python /comfy/ComfyUI/custom_nodes/comfyui-manager/cm-cli.py cli-only-mode enable
+
 python /comfy/ComfyUI/custom_nodes/comfyui-manager/cm-cli.py install \
-  ComfyUI-Easy-Use \
-  ComfyUI-KJNodes \
-  ComfyUI-VideoHelperSuite \
-  ComfyUI_essentials \
-  CoCoTools_IO \
-  ComfyUI-tbox \
-  Comfyui_Qwen3-VL-Instruct \
-  rgthree-comfy \
-  --mode remote
+  https://github.com/yolain/ComfyUI-Easy-Use \
+  https://github.com/kijai/ComfyUI-KJNodes \
+  https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite \
+  https://github.com/IuvenisSapiens/ComfyUI_Qwen3-VL-Instruct \
+  https://github.com/cubiq/ComfyUI_essentials \
+  https://github.com/Conor-Collins/ComfyUI-CoCoTools_IO \
+  https://github.com/shizuka-ai/ComfyUI-tbox \
+  https://github.com/rgthree/rgthree-comfy
+
 
 # 修复依赖
 python /comfy/ComfyUI/custom_nodes/comfyui-manager/cm-cli.py restore-dependencies
