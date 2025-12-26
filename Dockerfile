@@ -90,6 +90,10 @@ RUN useradd -u 1025 -d /home/comfytoo -g comfytoo -s /bin/bash -m comfytoo \
     && adduser comfytoo sudo
 
 ENV COMFYUSER_DIR="/comfy"
+ENV USE_UV=true \
+    WANTED_UID=0 \
+    WANTED_GID=0 \
+    SECURITY_LEVEL=normal
 RUN mkdir -p ${COMFYUSER_DIR}
 RUN it="/etc/comfyuser_dir"; echo ${COMFYUSER_DIR} > $it && chmod 555 $it
 
