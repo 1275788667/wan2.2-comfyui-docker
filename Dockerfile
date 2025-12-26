@@ -97,9 +97,6 @@ ENV USE_UV=false \
 RUN mkdir -p ${COMFYUSER_DIR}
 RUN it="/etc/comfyuser_dir"; echo ${COMFYUSER_DIR} > $it && chmod 555 $it
 
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
-    && export PATH=/home/comfy/.local/bin:$PATH \
-    && uv --version
 
 
 ENV NVIDIA_DRIVER_CAPABILITIES="all"
