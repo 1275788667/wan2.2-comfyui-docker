@@ -8,7 +8,7 @@ RUN apt-get update -y --fix-missing\
   && apt-get install -y \
     apt-utils \
     locales \
-    ca-certificates \
+    ca-certificates vim iftop \
     && apt-get upgrade -y \
     && apt-get clean
 
@@ -90,7 +90,7 @@ RUN useradd -u 1025 -d /home/comfytoo -g comfytoo -s /bin/bash -m comfytoo \
     && adduser comfytoo sudo
 
 ENV COMFYUSER_DIR="/comfy"
-ENV USE_UV=false \
+ENV USE_UV=true \
     WANTED_UID=0 \
     WANTED_GID=0 \
     SECURITY_LEVEL=normal
