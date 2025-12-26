@@ -323,28 +323,28 @@ dir_validate() { # arg1 = directory to validate / arg2 = "mount" or ""; a "mount
   if [ ! -r "$testdir" ]; then error_exit "Directory $testdir not readable"; fi
 }
 
-## Path: ${COMFYUSER_DIR}/mnt
+## Path: ${COMFYUSER_DIR}
 echo ""; echo "== Testing write access as the comfy user to the run directory"
-it_dir="${COMFYUSER_DIR}/mnt"
+it_dir="${COMFYUSER_DIR}"
 dir_validate "${it_dir}" "mount"
 it="${it_dir}/.testfile"; touch $it && rm -f $it || error_exit "Failed to write to $it_dir"
 
 ##
-it_dir="${COMFYUSER_DIR}/mnt/pip_cache"
+it_dir="${COMFYUSER_DIR}/pip_cache"
 if [ -d "${it_dir}" ]; then
   echo ""; echo "== ${it_dir} present: Setting the PIP_CACHE_DIR variable to use it"
   dir_validate "${it_dir}"
   it="${it_dir}/.testfile"; touch $it && rm -f $it || error_exit "Failed to write to pip cache directory as the comfy user"
-  export PIP_CACHE_DIR=${COMFYUSER_DIR}/mnt/pip_cache
+  export PIP_CACHE_DIR=${COMFYUSER_DIR}/pip_cache
 fi
 
 ##
-it_dir="${COMFYUSER_DIR}/mnt/tmp"
+it_dir="${COMFYUSER_DIR}/tmp"
 if [ -d "${it_dir}" ]; then
   echo ""; echo "== ${it_dir} present: Setting the TMPDIR variable to use it"
   dir_validate "${it_dir}"
   it="${it_dir}/.testfile"; touch $it && rm -f $it || error_exit "Failed to write to tmp directory as the comfy user"
-  export TMPDIR=${COMFYUSER_DIR}/mnt/tmp
+  export TMPDIR=${COMFYUSER_DIR}/tmp
 fi
 
 ##
@@ -372,7 +372,7 @@ if [ "A${USE_UV}" == "Atrue" ]; then
   echo -n "    version: "; uv --version
   PIP3_BASE="uv pip"
 
-  it_dir="${COMFYUSER_DIR}/mnt/uv_cache"
+  it_dir="${COMFYUSER_DIR}/uv_cache"
   if [ ! -d "${it_dir}" ]; then
     mkdir -p "${it_dir}"
     dir_validate "${it_dir}"
@@ -394,9 +394,9 @@ echo "== PIP3_CMD: \"${PIP3_CMD}\""
 
 
 ##
-it_dir="${COMFYUSER_DIR}/mnt"
+it_dir="${COMFYUSER_DIR}"
 echo ""; echo "== Obtaining the latest version of ComfyUI (if folder not present)"
-cd $it_dir # ${COMFYUSER_DIR}/mnt -- stay here for the following checks/setups
+cd $it_dir # ${COMFYUSER_DIR} -- stay here for the following checks/setups
 if [ ! -d "ComfyUI" ]; then
   echo ""; echo "== Cloning ComfyUI"
   git clone https://github.com/comfyanonymous/ComfyUI.git ComfyUI || error_exit "ComfyUI clone failed"
@@ -408,7 +408,7 @@ fi
 
 ##
 echo ""; echo "== Confirm the ComfyUI directory is present and we can write to it"
-it_dir="${COMFYUSER_DIR}/mnt/ComfyUI"
+it_dir="${COMFYUSER_DIR}/ComfyUI"
 dir_validate "${it_dir}" 
 it="${it_dir}/.testfile"; touch $it && rm -f $it || error_exit "Failed to write to ComfyUI directory as the comfy user"
 
@@ -423,23 +423,23 @@ fi
 
 ##
 echo ""; echo "== Validate/Create HuggingFace directory"
-it_dir="${COMFYUSER_DIR}/mnt/HF"
+it_dir="${COMFYUSER_DIR}/HF"
 if [ ! -d "${it_dir}" ]; then
   echo "";echo "== Creating HF directory"
   mkdir -p ${it_dir}
 fi
 dir_validate "${it_dir}"
 it=${it_dir}/.testfile; touch $it && rm -f $it || error_exit "Failed to write to HF directory as the comfy user"
-export HF_HOME=${COMFYUSER_DIR}/mnt/HF
+export HF_HOME=${COMFYUSER_DIR}/HF
 
 # Attempting to support multiple build bases
 # the venv directory is specific to the build base
 # we are placing a marker file in the venv directory to match it to a build base
 # if the marker is not for container's build base, we rename the venv directory to avoid conflicts
 
-## Current path: ${COMFYUSER_DIR}/mnt
+## Current path: ${COMFYUSER_DIR}
 echo ""; echo "== if a venv is present, confirm we can write to it"
-it_dir="${COMFYUSER_DIR}/mnt/venv"
+it_dir="${COMFYUSER_DIR}/venv"
 if [ -d "${it_dir}" ]; then
   dir_validate "${it_dir}"
   it=${it_dir}/.testfile; touch $it && rm -f $it || error_exit "Failed to write to venv directory as the comfy user"
@@ -480,7 +480,7 @@ fi
 
 ##
 echo ""; echo "== Confirming venv is writeable"
-it_dir="${COMFYUSER_DIR}/mnt/venv"
+it_dir="${COMFYUSER_DIR}/venv"
 dir_validate "${it_dir}"
 it="${it_dir}/.testfile"; touch $it && rm -f $it || error_exit "Failed to write to venv directory as the comfy user"
 
@@ -559,7 +559,7 @@ ${PIP3_CMD} pybind11 || error_exit "Failed to install pybind11"
 ${PIP3_CMD} packaging || error_exit "Failed to install packaging"
 
 # Check for the post-venv script
-it=${COMFYUSER_DIR}/mnt/postvenv_script.bash
+it=${COMFYUSER_DIR}/postvenv_script.bash
 echo ""; echo "== Checking for post-venv script: ${it}"
 run_userscript $it "chmod"
 
@@ -849,11 +849,11 @@ echo "";echo -n "== Container directory: "; pwd
 # Download default Wan 2.2 models (run once, comfy user)
 # ============================================================
 
-COMFY_ROOT=/comfy/mnt/ComfyUI
-MODELS_DIR=${COMFY_ROOT}/mnt/models
+COMFY_ROOT=/comfy/ComfyUI
+MODELS_DIR=${COMFY_ROOT}/models
 
 # marker file to avoid re-downloading
-MODELS_READY_FLAG=/comfy/mnt/.models_ready
+MODELS_READY_FLAG=/comfy/.models_ready
 
 if [ ! -f "${MODELS_READY_FLAG}" ]; then
   echo "== Downloading default Wan 2.2 models =="
@@ -929,7 +929,7 @@ fi
 
 
 # Check for the main custom user script (usually with command line override)
-it=${COMFYUSER_DIR}/mnt/user_script.bash
+it=${COMFYUSER_DIR}/user_script.bash
 echo ""; echo "== Checking for primary user script: ${it}"
 run_userscript $it "chmod"
 
