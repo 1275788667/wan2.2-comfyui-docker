@@ -399,7 +399,7 @@ echo ""; echo "== Obtaining the latest version of ComfyUI (if folder not present
 cd $it_dir # ${COMFYUSER_DIR} -- stay here for the following checks/setups
 if [ ! -d "ComfyUI" ]; then
   echo ""; echo "== Cloning ComfyUI"
-  git clone --branch v0.4.0 --single-branch https://github.com/comfyanonymous/ComfyUI.git ComfyUI || error_exit "ComfyUI clone failed"
+  git clone https://github.com/comfyanonymous/ComfyUI.git ComfyUI || error_exit "ComfyUI clone failed"
   if [ "$A{DISABLE_UPGRADES}" == "Atrue" ]; then
     echo ""; echo "== This is a new installation, setting DISABLE_UPGRADES to false"
     DISABLE_UPGRADES=false
