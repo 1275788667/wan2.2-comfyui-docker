@@ -153,7 +153,7 @@
         "ver": "0.3.45"
       },
       "widgets_values": [
-        "GgSbO7w2fdzJAjx.thumb.700_0.jpg",
+        "photo_2025-12-09_08-40-11.jpg",
         "image"
       ]
     },
@@ -230,9 +230,9 @@
         "ver": "0.3.65"
       },
       "widgets_values": [
-        "一个美女脱下了她的衣服，朝屏幕转身，露出了胸部和阴部",
-        1280,
-        720,
+        "A girl stands in front of the audience, holding and kneading her breasts with both hands from a half body perspective. Then, she smoothly took off all her clothes and bra with both hands, revealing her large breasts including nipples. Then pull the clothes under her legs, she's not wearing any underwear! Expose charming labia and perfect nudity.",
+        608,
+        800,
         81
       ]
     }
@@ -275,7 +275,7 @@
           "bounding": [
             -150,
             191.485107421875,
-            124.029296875,
+            128.7109375,
             140
           ]
         },
@@ -299,7 +299,7 @@
             "localized_name": "start_image",
             "shape": 7,
             "pos": [
-              -45.970703125,
+              -41.2890625,
               211.485107421875
             ]
           },
@@ -312,7 +312,7 @@
             ],
             "label": "Positive Prompt",
             "pos": [
-              -45.970703125,
+              -41.2890625,
               231.485107421875
             ]
           },
@@ -324,7 +324,7 @@
               220
             ],
             "pos": [
-              -45.970703125,
+              -41.2890625,
               251.485107421875
             ]
           },
@@ -336,7 +336,7 @@
               221
             ],
             "pos": [
-              -45.970703125,
+              -41.2890625,
               271.485107421875
             ]
           },
@@ -349,7 +349,7 @@
             ],
             "label": "frames",
             "pos": [
-              -45.970703125,
+              -41.2890625,
               291.485107421875
             ]
           }
@@ -608,7 +608,7 @@
             },
             "widgets_values": [
               "enable",
-              588716531652152,
+              151712271444679,
               "randomize",
               4,
               1,
@@ -736,7 +736,7 @@
               "ver": "0.3.45"
             },
             "widgets_values": [
-              "一个美女脱下了她的衣服，朝屏幕转身，露出了胸部和阴部"
+              "A girl stands in front of the audience, holding and kneading her breasts with both hands from a half body perspective. Then, she smoothly took off all her clothes and bra with both hands, revealing her large breasts including nipples. Then pull the clothes under her legs, she's not wearing any underwear! Expose charming labia and perfect nudity."
             ],
             "color": "#232",
             "bgcolor": "#353"
@@ -898,8 +898,8 @@
               "ver": "0.3.45"
             },
             "widgets_values": [
-              1280,
-              720,
+              608,
+              800,
               81,
               1
             ]
@@ -1349,18 +1349,18 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.6553853236128835,
+      "scale": 0.8723178657287483,
       "offset": [
-        1161.5165463241078,
-        160.27283912841733
+        439.4908187580517,
+        66.58804810169349
       ]
     },
-    "frontendVersion": "1.33.13",
+    "frontendVersion": "1.35.9",
+    "workflowRendererVersion": "LG",
     "VHS_latentpreview": false,
     "VHS_latentpreviewrate": 0,
     "VHS_MetadataImage": true,
-    "VHS_KeepIntermediate": true,
-    "workflowRendererVersion": "LG"
+    "VHS_KeepIntermediate": true
   },
   "version": 0.4
 }
