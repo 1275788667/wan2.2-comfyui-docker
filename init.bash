@@ -910,6 +910,52 @@ fi
 
 
 
+cd $COMFY_ROOT/custom_nodes
+
+# 定义仓库列表
+repos=(
+  "https://github.com/1038lab/ComfyUI-QwenVL.git"
+)
+
+for repo in "${repos[@]}"; do
+  # 获取 repo 名称
+  name=$(basename "$repo" .git)
+  if [ -d "$name" ]; then
+    echo "目录 $name 已存在，跳过 clone"
+    # 如果你想更新，可以改成 git pull
+    # cd "$name" && git pull && cd ..
+  else
+    git clone "$repo"
+  fi
+done
+
+cd $COMFY_ROOT
+
+
+mkdir -p ${MODELS_DIR}/LLM/Qwen-VL
+cd ${MODELS_DIR}/LLM/Qwen-VL
+
+# 定义仓库列表
+repos=(
+  "https://huggingface.co/huihui-ai/Huihui-Qwen3-VL-8B-Instruct-abliterated"
+)
+
+for repo in "${repos[@]}"; do
+  # 获取 repo 名称
+  name=$(basename "$repo" .git)
+  if [ -d "$name" ]; then
+    echo "目录 $name 已存在，跳过 clone"
+    # 如果你想更新，可以改成 git pull
+    # cd "$name" && git pull && cd ..
+  else
+    git clone "$repo"
+  fi
+done
+
+cd $COMFY_ROOT
+
+
+
 
 
 
